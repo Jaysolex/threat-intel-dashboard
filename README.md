@@ -114,3 +114,68 @@ IOC risk scoring weights: flagged IPs (×40), suspicious URLs (×30), high-risk 
 ---
 
 ## Project Structure
+
+```
+threat-intel-dashboard/
+├── backend/
+│   ├── src/main/java/com/security/threatintel/
+│   │   ├── controller/      # ReportController — thin HTTP adapter
+│   │   ├── service/         # ThreatReportService, PdfReportGenerator
+│   │   ├── domain/          # ThreatReport (Builder), MitreAttackTechnique (Record)
+│   │   └── exception/       # GlobalExceptionHandler, ReportNotFoundException
+│   └── pom.xml
+├── frontend/
+│   ├── public/
+│   └── src/
+│       └── App.js           # Tab routing, analysis flows, alert engine, chart
+├── screenshots/
+└── README.md
+```
+
+-----
+
+## Running the Project
+
+### Backend
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+Runs on `http://localhost:8080`
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+The frontend connects to `http://localhost:8080` by default. Both services must be running for full functionality. The frontend degrades gracefully to heuristic scoring if the backend is unreachable.
+
+-----
+
+## API Endpoints
+
+|Method|Endpoint                        |Description                   |
+|------|--------------------------------|------------------------------|
+|GET   |`/api/threat/analyze?ip=`       |IP enrichment and risk scoring|
+|GET   |`/api/threat/analyze-url?url=`  |URL threat analysis           |
+|GET   |`/api/threat/analyze-hash?hash=`|File hash AV lookup           |
+|GET   |`/api/threat/history`           |Scan history                  |
+|GET   |`/api/threat/alerts`            |Active alert feed             |
+|GET   |`/api/v1/threat/report/{id}`    |PDF report download           |
+
+-----
+
+## Why This Project
+
+Most portfolio projects demonstrate that someone can call an API and render the response. This one demonstrates something different: how a SOC analyst thinks.
+
+The detection logic mirrors real triage decisions — composite scoring across multiple sources, threshold-based escalation, MITRE technique mapping based on observed behaviour, and structured reporting that separates executive summary from technical indicators. The architecture mirrors how production security tooling is actually built — not one monolithic function, but a service layer that enriches, a domain model that enforces invariants, and a controller that stays out of the way.
+
+-----
+
+*Built by Solomon James — Cybersecurity Analyst | Detection Engineering | SOC Operations*
