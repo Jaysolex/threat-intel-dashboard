@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: threatintel
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/threatintel
+    username: cybersolex
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+abuseipdb:
+  api-key: e261d4f961cbbc7bbeee0c47bc83a632c2485bebaacdbd5af02668a18b8ded5d3cc2a058a7a8f232
+
+virustotal:
+  api-key: 3d15a25a80bc0f5b66a7f9a21da6d274036857e70b568b013cd4cc01be623a47
+
+shodan:
+  api-key: ax06kxnwCOSYRMnLMzdIsp5cmGQswvbQ
+
+
