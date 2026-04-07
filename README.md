@@ -50,7 +50,7 @@ The system is split into two independently runnable services:
 ![High Risk Detection](screenshots/high-risk-detection.png)
 
 ### Scan History & Risk Trend
-![Scan History](screenshots/scan-history.png)
+![Scan History](screenshots/scan-hsitory.png)
 
 ### Active Alerts Panel
 ![Active Alerts](screenshots/Active-alerts.png)
